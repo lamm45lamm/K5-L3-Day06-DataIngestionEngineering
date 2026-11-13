@@ -19,7 +19,7 @@
       "len_median": 500,
       "len_max": 500,
       "db_rows": 555,
-      "ingest_seconds": 8.8,
+      "ingest_seconds": 8.7,
       "embed_reused_from_B": false,
       "cost_usd": 0
     },
@@ -108,5 +108,5 @@
       }
     }
   },
-  "run_at": "2026-11-13T11:16:33+0700"
+  "run_at": "2026-11-13T11:44:39+0700"
 }

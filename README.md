@@ -45,3 +45,23 @@ Dùng cùng dữ liệu, model và câu hỏi cho cả ba cấu hình. Tách **1
 | Cách nộp bài | [SUBMISSION.md](SUBMISSION.md) |
 
 [data/format-example.json](data/format-example.json) chỉ minh họa định dạng, không phải corpus đủ điều kiện. Phần xử lý và benchmark do bạn tự hiện thực; không bắt buộc xây chatbot.
+
+## Bài làm: NIST AI RMF retrieval
+
+Corpus: NIST AI 100-1 (AI RMF 1.0) + AI 600-1 (Generative AI Profile), 92 trang nội dung, public domain. Chi tiết nguồn/quyền/trang: [data/manifest.json](data/manifest.json). Câu hỏi và gold: [benchmark/](benchmark/README.md). Kết quả và phân tích: [starter/results/analysis.md](starter/results/analysis.md); báo cáo: [report/individual/MSSV_HoTen.md](report/individual/MSSV_HoTen.md).
+
+Cần Docker, `poppler` (`pdftotext`; chỉ để tạo lại corpus) và Python 3.12–3.13 cho embedding local (Python 3.15 chưa có wheel `onnxruntime`). Từ thư mục gốc:
+
+```bash
+uv venv --python 3.12 .venv312 && source .venv312/bin/activate   # hoặc python3.12 -m venv
+uv pip install -r starter/requirements.txt                          # hoặc pip install -r ...
+cp starter/.env.example starter/.env                                # không cần API key
+(cd starter && docker compose -p day6_student_starter up -d --wait && python scripts/check_setup.py)
+
+python scripts/build_corpus.py            # tùy chọn: tạo lại data/pages.jsonl + manifest.json từ data/raw/*.pdf
+python benchmark/build_questions.py && python benchmark/verify_gold.py   # tạo lại + kiểm chứng gold
+cd starter && python -m src.run           # nạp 3 chiến lược, chạy 20 câu, lưu results/traces.jsonl + summary.json
+python -m src.audit                       # tạo bảng audit nháp results/audit_*.csv
+```
+
+`python -m src.run` tải model `BAAI/bge-small-en-v1.5` (~130 MB) từ Hugging Face lần đầu, mất ~1 phút; sau đó ~20 s. Chạy lại không nhân đôi dữ liệu. Nếu Postgres không chạy, lệnh báo lỗi kết nối, không fallback sang vector giả.

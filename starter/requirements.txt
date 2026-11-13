@@ -2,3 +2,5 @@
 psycopg[binary]==3.3.8
 pypdf>=5,<7
 python-dotenv>=1,<2
+# Local embeddings (needs Python 3.12-3.13; Python 3.15 has no onnxruntime wheel yet).
+fastembed==0.9.1

@@ -1,0 +1,98 @@
+{
+ "A": {
+  "all": {
+   "n": 20,
+   "hit_at_1": 12,
+   "evidence_hit_at_3": 15,
+   "page_only_misses": 2
+  },
+  "dev": {
+   "n": 15,
+   "hit_at_1": 10,
+   "evidence_hit_at_3": 11,
+   "page_only_misses": 2
+  },
+  "test": {
+   "n": 5,
+   "hit_at_1": 2,
+   "evidence_hit_at_3": 4,
+   "page_only_misses": 0
+  }
+ },
+ "B": {
+  "all": {
+   "n": 20,
+   "hit_at_1": 13,
+   "evidence_hit_at_3": 16,
+   "page_only_misses": 0
+  },
+  "dev": {
+   "n": 15,
+   "hit_at_1": 11,
+   "evidence_hit_at_3": 13,
+   "page_only_misses": 0
+  },
+  "test": {
+   "n": 5,
+   "hit_at_1": 2,
+   "evidence_hit_at_3": 3,
+   "page_only_misses": 0
+  }
+ },
+ "C": {
+  "all": {
+   "n": 20,
+   "hit_at_1": 13,
+   "evidence_hit_at_3": 17,
+   "page_only_misses": 0
+  },
+  "dev": {
+   "n": 15,
+   "hit_at_1": 11,
+   "evidence_hit_at_3": 14,
+   "page_only_misses": 0
+  },
+  "test": {
+   "n": 5,
+   "hit_at_1": 2,
+   "evidence_hit_at_3": 3,
+   "page_only_misses": 0
+  }
+ }
+}
+{
+ "A": {
+  "chunks": 555,
+  "total_chars": 258587,
+  "len_min": 51,
+  "len_median": 500,
+  "len_max": 500,
+  "db_rows": 555,
+  "ingest_seconds": 8.7,
+  "embed_reused_from_B": false,
+  "cost_usd": 0
+ },
+ "B": {
+  "chunks": 304,
+  "total_chars": 235227,
+  "len_min": 7,
+  "len_median": 849.0,
+  "len_max": 1000,
+  "db_rows": 304,
+  "ingest_seconds": 8.7,
+  "embed_reused_from_B": false,
+  "cost_usd": 0
+ },
+ "C": {
+  "chunks": 304,
+  "total_chars": 235227,
+  "len_min": 7,
+  "len_median": 849.0,
+  "len_max": 1000,
+  "db_rows": 304,
+  "ingest_seconds": 0.1,
+  "embed_reused_from_B": true,
+  "cost_usd": 0
+ }
+}
+../.venv312/bin/python -m src.run  82.30s user 2.04s system 448% cpu 18.787 total
