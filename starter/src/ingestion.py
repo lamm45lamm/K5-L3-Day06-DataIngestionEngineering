@@ -1,16 +1,22 @@
-"""Read and normalize source data. TODO: implement functions."""
+"""Load pre-extracted pages (data/pages.jsonl, built by scripts/build_corpus.py from the PDFs)."""
+import json
+import re
+import unicodedata
 from pathlib import Path
+
 from .models import DocumentPage
 
 
-def load_pdf(path: Path, document_id: str, source: str) -> list[DocumentPage]:
-    """TODO: extract each physical page; keep its page number and source.
-
-    Detect and record pages with no text. OCR, when needed, is a separate step.
-    """
-    raise NotImplementedError("TODO: load_pdf")
-
-
 def normalize_text(text: str) -> str:
-    """TODO: normalize Unicode and whitespace without discarding useful structure."""
-    raise NotImplementedError("TODO: normalize_text")
+    """NFC + whitespace collapse. No NFKC: gold quotes keep curly quotes and dashes."""
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFC", text)).strip()
+
+
+def load_pages(path: Path) -> list[DocumentPage]:
+    pages = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        r = json.loads(line)
+        pages.append(DocumentPage(
+            document_id=r["document_id"], source=r["source"], page=r["page"], text=normalize_text(r["text"]),
+            metadata={k: r[k] for k in ("page_id", "printed_page", "section", "function", "year")}))
+    return pages

@@ -1,0 +1,49 @@
+{
+  "A": {
+    "coherence_mean_of_2": 0.0,
+    "coherence_counts": {
+      "0": 10,
+      "1": 0,
+      "2": 0
+    },
+    "metadata_ok": "15/15",
+    "grounding_mean_of_2": 1.6,
+    "grounding_counts": {
+      "0": 1,
+      "1": 0,
+      "2": 4
+    }
+  },
+  "B": {
+    "coherence_mean_of_2": 2.0,
+    "coherence_counts": {
+      "0": 0,
+      "1": 0,
+      "2": 10
+    },
+    "metadata_ok": "15/15",
+    "grounding_mean_of_2": 1.4,
+    "grounding_counts": {
+      "0": 1,
+      "1": 1,
+      "2": 3
+    }
+  },
+  "C": {
+    "coherence_mean_of_2": 2.0,
+    "coherence_counts": {
+      "0": 0,
+      "1": 0,
+      "2": 10
+    },
+    "metadata_ok": "15/15",
+    "grounding_mean_of_2": 1.4,
+    "grounding_counts": {
+      "0": 1,
+      "1": 1,
+      "2": 3
+    }
+  },
+  "filter_compliance_C": "1/1",
+  "note": "DRAFT labels by AI assistant, pending author review"
+}
